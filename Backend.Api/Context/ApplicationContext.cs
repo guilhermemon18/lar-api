@@ -1,10 +1,11 @@
 
 
+using Backend.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Api.Context
 {
-    public class BdContext(DbContextOptions<BdContext> options) : DbContext(options)
+    public class ApplicationContext(DbContextOptions<ApplicationContext> options) : DbContext(options)
     {
         public bool TestarConexao()
         {
@@ -19,6 +20,8 @@ namespace Backend.Api.Context
                 return false;
             }
         }
+
+        public DbSet<Person> People { get; set; }
     }
 
 

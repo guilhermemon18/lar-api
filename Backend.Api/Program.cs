@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 string connectionString = builder.Configuration.GetConnectionString("default");
-builder.Services.AddDbContext<BdContext>(op => op.UseNpgsql(connectionString));
+builder.Services.AddDbContext<ApplicationContext>(op => op.UseNpgsql(connectionString));
 
 var app = builder.Build();
 
@@ -19,6 +19,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationContext>().Database.Migrate();
 }
 Console.WriteLine(connectionString);
 app.UseHttpsRedirection();
@@ -35,7 +36,7 @@ static void TestarConexaoBancoDeDados(WebApplication app)
 {
     using (var scope = app.Services.CreateScope())
     {
-        var context = scope.ServiceProvider.GetRequiredService<BdContext>();
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
 
         if (context.TestarConexao()) // Chama o método TestarConexao do seu contexto
         {
