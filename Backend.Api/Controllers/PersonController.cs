@@ -60,6 +60,7 @@ namespace Backend.Api.Controllers
             personDataBase.IsActive = person.IsActive;
             personDataBase.BirthDate = person.BirthDate;
             personDataBase.Cpf = person.Cpf;
+            personDataBase.Phones = person.Phones;
 
             _context.People.Update(personDataBase);
             _context.SaveChanges();
