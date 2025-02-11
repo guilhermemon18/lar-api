@@ -45,6 +45,7 @@ namespace Backend.Api.Controllers
         public IActionResult FindAll()
         {
             var person = _context.People.ToList();
+            person = _context.People.Include(p => p.Phones).ToList();
             return Ok(person);
         }
 
