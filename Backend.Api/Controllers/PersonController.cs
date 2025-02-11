@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Backend.Api.Context;
 using Backend.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Api.Controllers
 {
@@ -31,6 +32,7 @@ namespace Backend.Api.Controllers
         public IActionResult FindOne(int id)
         {
             var person = _context.People.Find(id);
+            person = _context.People.Include(p => p.Phones).Where(p => p.Id == id).FirstOrDefault();
             if (person == null)
             {
                 return NotFound();
@@ -43,6 +45,7 @@ namespace Backend.Api.Controllers
         public IActionResult FindAll()
         {
             var person = _context.People.ToList();
+            person = _context.People.Include(p => p.Phones).ToList();
             return Ok(person);
         }
 
@@ -58,6 +61,7 @@ namespace Backend.Api.Controllers
             personDataBase.IsActive = person.IsActive;
             personDataBase.BirthDate = person.BirthDate;
             personDataBase.Cpf = person.Cpf;
+            personDataBase.Phones = person.Phones;
 
             _context.People.Update(personDataBase);
             _context.SaveChanges();
