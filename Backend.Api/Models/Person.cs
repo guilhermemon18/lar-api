@@ -8,5 +8,6 @@ namespace Backend.Api.Models
         public string? Cpf { get; set; }
         public DateTime BirthDate { get; set; }
         public bool IsActive { get; set; }
+        public List<Phone>? Phones { get; set; }
     }
 }

@@ -22,7 +22,8 @@ namespace Backend.Api.Context
         }
 
         public DbSet<Person> People { get; set; }
+        public DbSet<Phone> Phones { get; set; }
+
+
     }
-
-
 }
