@@ -20,29 +20,29 @@ namespace Backend.Api.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public T? FindById(int id)
+        public virtual T? FindById(int id)
         {
             return _dbSet.Find(id);
         }
 
-        public List<T> FindAll()
+        public virtual List<T> FindAll()
         {
             return _dbSet.ToList();
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             _dbSet.Update(entity);
             Save();
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
             _dbSet.Add(entity);
             Save();
         }
 
-        public void Remove(T entity)
+        public virtual void Remove(T entity)
         {
             _dbSet.Remove(entity);
             Save();
