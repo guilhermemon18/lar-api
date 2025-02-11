@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Backend.Api.Context;
 using Backend.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Api.Controllers
 {
@@ -31,6 +32,7 @@ namespace Backend.Api.Controllers
         public IActionResult FindOne(int id)
         {
             var person = _context.People.Find(id);
+            person = _context.People.Include(p => p.Phones).Where(p => p.Id == id).FirstOrDefault();
             if (person == null)
             {
                 return NotFound();
