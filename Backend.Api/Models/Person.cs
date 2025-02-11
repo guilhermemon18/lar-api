@@ -3,6 +3,16 @@ namespace Backend.Api.Models
 {
     public class Person
     {
+
+        public Person(string name, string cpf, DateTime birthDate, bool isActive, List<Phone> phones)
+        {
+            Name = name;
+            Cpf = cpf;
+            BirthDate = birthDate;
+            IsActive = isActive;
+            Phones = phones;
+        }
+
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Cpf { get; set; }
