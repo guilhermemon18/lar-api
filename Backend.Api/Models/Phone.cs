@@ -9,11 +9,10 @@ namespace Backend.Api.Models
     public class Phone
     {
 
-        public Phone(PhoneType phoneType, string number, int personId)
+        public Phone(PhoneType phoneType, string number)
         {
             PhoneType = phoneType;
             Number = number;
-            PersonId = personId;
         }
         public int Id { get; set; }
         public PhoneType PhoneType { get; set; }
