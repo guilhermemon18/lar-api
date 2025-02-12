@@ -5,7 +5,7 @@ namespace Backend.Api.Models
     {
 
         public Person() { }
-        public Person(string name, string cpf, DateTime birthDate, bool isActive, List<Phone> phones)
+        public Person(string name, string cpf, DateOnly birthDate, bool isActive, List<Phone> phones)
         {
             Name = name;
             Cpf = cpf;
@@ -17,7 +17,7 @@ namespace Backend.Api.Models
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Cpf { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateOnly BirthDate { get; set; }
         public bool IsActive { get; set; }
         public List<Phone>? Phones { get; set; }
     }

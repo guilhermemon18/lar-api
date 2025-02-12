@@ -6,7 +6,7 @@ namespace Backend.Api.dto
 
         public string? Name { get; set; }
         public string? Cpf { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateOnly BirthDate { get; set; }
         public bool IsActive { get; set; }
         public List<CreatePhoneDto>? Phones { get; set; }
     }
