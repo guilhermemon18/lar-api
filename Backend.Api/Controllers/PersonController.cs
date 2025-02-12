@@ -22,14 +22,14 @@ namespace Backend.Api.Controllers
             _personService = personService;
         }
         [HttpPost]
-        public IActionResult Create(CreatePersonDto person)
+        public IActionResult Create([FromBody] CreatePersonDto person)
         {
             Person newPerson = _personService.Create(person);
             return CreatedAtAction(nameof(FindOne), new { id = newPerson.Id }, newPerson);
         }
 
         [HttpGet("{id}")]
-        public IActionResult FindOne(int id)
+        public IActionResult FindOne([FromRoute] int id)
         {
             var person = _personService.FindOne(id);
             return Ok(person);
@@ -44,14 +44,14 @@ namespace Backend.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UpdatePersonDto person)
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdatePersonDto person)
         {
             var personUpdated = _personService.Update(id, person);
             return Ok(personUpdated);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Remove(int id)
+        public IActionResult Remove([FromRoute] int id)
         {
             _personService.Remove(id);
             return NoContent();

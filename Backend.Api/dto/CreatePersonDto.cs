@@ -15,9 +15,10 @@ namespace Backend.Api.dto
         [CpfValidation]
         public string? Cpf { get; set; }
         [Required]
-        [DataType(DataType.Date)]
-        public DateOnly BirthDate { get; set; }
-        public bool IsActive { get; set; }
+        // [DataType(DataType.Date)]
+        public DateOnly? BirthDate { get; set; }
+        [Required]
+        public bool? IsActive { get; set; }
         public List<CreatePhoneDto>? Phones { get; set; }
     }
 }
