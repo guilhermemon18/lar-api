@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Backend.Api.Context;
+using Backend.Api.dto;
 using Backend.Api.Models;
+using Backend.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,30 +15,23 @@ namespace Backend.Api.Controllers
     [Route("[controller]")]
     public class PersonController : ControllerBase
     {
-        private readonly ApplicationContext _context;
+        private readonly PersonService _personService;
 
-        public PersonController(ApplicationContext context)
+        public PersonController(PersonService personService)
         {
-            _context = context;
+            _personService = personService;
         }
         [HttpPost]
-        public IActionResult Create(Person person)
+        public IActionResult Create(CreatePersonDto person)
         {
-            _context.Add(person);
-            _context.SaveChanges();
-            // return Ok(contato);
-            return CreatedAtAction(nameof(FindOne), new { id = person.Id }, person);
+            Person newPerson = _personService.Create(person);
+            return CreatedAtAction(nameof(FindOne), new { id = newPerson.Id }, newPerson);
         }
 
         [HttpGet("{id}")]
         public IActionResult FindOne(int id)
         {
-            var person = _context.People.Find(id);
-            person = _context.People.Include(p => p.Phones).Where(p => p.Id == id).FirstOrDefault();
-            if (person == null)
-            {
-                return NotFound();
-            }
+            var person = _personService.FindOne(id);
             return Ok(person);
         }
 
@@ -44,41 +39,21 @@ namespace Backend.Api.Controllers
         [HttpGet]
         public IActionResult FindAll()
         {
-            var person = _context.People.ToList();
-            person = _context.People.Include(p => p.Phones).ToList();
-            return Ok(person);
+            var persons = _personService.FindAll();
+            return Ok(persons);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Person person)
+        public IActionResult Update(int id, UpdatePersonDto person)
         {
-            var personDataBase = _context.People.Find(id);
-            if (personDataBase == null)
-            {
-                return NotFound();
-            }
-            personDataBase.Name = person.Name;
-            personDataBase.IsActive = person.IsActive;
-            personDataBase.BirthDate = person.BirthDate;
-            personDataBase.Cpf = person.Cpf;
-            personDataBase.Phones = person.Phones;
-
-            _context.People.Update(personDataBase);
-            _context.SaveChanges();
-
-            return Ok(personDataBase);
+            var personUpdated = _personService.Update(id, person);
+            return Ok(personUpdated);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {
-            var personDataBase = _context.People.Find(id);
-            if (personDataBase == null)
-            {
-                return NotFound();
-            }
-            _context.People.Remove(personDataBase);
-            _context.SaveChanges();
+            _personService.Remove(id);
             return NoContent();
         }
 

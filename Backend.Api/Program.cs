@@ -1,4 +1,7 @@
 using Backend.Api.Context;
+using Backend.Api.Repositories;
+using Backend.Api.Repositories.Interfaces;
+using Backend.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +14,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 string connectionString = builder.Configuration.GetConnectionString("default");
 builder.Services.AddDbContext<ApplicationContext>(op => op.UseNpgsql(connectionString));
+//Add repositories and services:
+builder.Services.AddScoped<PersonRepository>();
+builder.Services.AddScoped<PersonService>();
 
 var app = builder.Build();
 
