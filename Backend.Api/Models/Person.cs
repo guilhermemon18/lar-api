@@ -4,6 +4,7 @@ namespace Backend.Api.Models
     public class Person
     {
 
+        public Person() { }
         public Person(string name, string cpf, DateTime birthDate, bool isActive, List<Phone> phones)
         {
             Name = name;
