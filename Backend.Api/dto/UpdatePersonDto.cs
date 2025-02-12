@@ -20,6 +20,7 @@ namespace Backend.Api.dto
         [Required]
         [DataType(DataType.Date)]
         public DateOnly BirthDate { get; set; }
+        [Required]
         public bool IsActive { get; set; }
         public List<Phone>? Phones { get; set; }
     }
