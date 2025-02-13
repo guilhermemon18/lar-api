@@ -6,11 +6,13 @@ using Backend.Api.Context;
 using Backend.Api.dto;
 using Backend.Api.Models;
 using Backend.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Api.Controllers
 {
+    [Authorize]
     [Route("api/people")]
     [ApiController]
     public class PersonController : ControllerBase
@@ -21,6 +23,7 @@ namespace Backend.Api.Controllers
         {
             _personService = personService;
         }
+
         [HttpPost]
         public IActionResult Create([FromBody] CreatePersonDto person)
         {
@@ -50,6 +53,7 @@ namespace Backend.Api.Controllers
             return Ok(personUpdated);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult Remove([FromRoute] int id)
         {

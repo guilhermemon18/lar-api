@@ -20,7 +20,7 @@ namespace Backend.Api.dto
         public string? Password { get; set; }
         [Required]
 
-        public bool? IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }
 
     }
 }

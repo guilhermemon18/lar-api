@@ -32,7 +32,11 @@ namespace Backend.Api.Services
             var key = Encoding.ASCII.GetBytes(securityKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity([new Claim("id", user.Id.ToString())]),
+                Subject = new ClaimsIdentity([
+                    new Claim("id", user.Id.ToString()),
+                     new Claim(ClaimTypes.Email, user.Email.ToString()),
+                     new Claim(ClaimTypes.Role, user.IsAdmin ? "Admin" : "Employee")
+                    ]),
                 Expires = DateTime.UtcNow.AddSeconds(expiration),
                 Audience = audience,
                 Issuer = issuer,
