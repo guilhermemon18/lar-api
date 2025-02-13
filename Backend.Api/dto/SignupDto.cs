@@ -18,6 +18,9 @@ namespace Backend.Api.dto
         [Required]
         [MinLength(4)]
         public string? Password { get; set; }
+        [Required]
+
+        public bool? IsAdmin { get; set; }
 
     }
 }
