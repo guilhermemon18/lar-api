@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Api.Controllers
 {
-    [ApiController]
     [Route("api/people")]
+    [ApiController]
     public class PersonController : ControllerBase
     {
         private readonly PersonService _personService;
