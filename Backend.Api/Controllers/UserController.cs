@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Backend.Api.dto;
 using Backend.Api.Models;
 using Backend.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Api.Controllers
@@ -20,6 +21,7 @@ namespace Backend.Api.Controllers
             _userService = userService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("signup")]
         public IActionResult Signup([FromBody] SignupDto signupDto)
         {
@@ -34,12 +36,20 @@ namespace Backend.Api.Controllers
             return Ok(token);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult FindAll()
         {
             var users = _userService.FindAll();
             return Ok(users);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{email}")]
+        public IActionResult Remove([FromRoute] string email)
+        {
+            _userService.Remove(email);
+            return NoContent();
         }
 
     }

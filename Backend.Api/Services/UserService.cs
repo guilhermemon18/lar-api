@@ -83,7 +83,11 @@ namespace Backend.Api.Services
             return _repository.FindAll();
         }
 
-
+        public void Remove(string email)
+        {
+            User? userToRemove = _repository.FindByEmail(email) ?? throw new NotFoundException("Email not found");
+            _repository.Remove(userToRemove);
+        }
 
 
 
