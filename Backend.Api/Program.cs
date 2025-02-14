@@ -80,7 +80,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationContext>().Database.Migrate();
 }
-Console.WriteLine(connectionString);
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
