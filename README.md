@@ -29,14 +29,20 @@ Faça um clone deste repositório e instale no seu ambiente de desenvolvimento u
 git clone git@github.com:guilhermemon18/lar-api.git
 ```
 
-Após clonar o conteúdo do repositório, acesse o diretório "Backend.Api e execute os comandos abaixo:
+Após clonar o conteúdo do repositório, acesse o diretório criado e execute os comandos abaixo:
 
 ```shell
 dotnet restore
 docker-compose up --build
 ```
 
-Após a execução do comando acima o servidor estará em execução no endereço `http://localhost:8080`, com a possibilidade de ser testado diretamente em `http://localhost:8080/swagger/index.html`
+Após a execução do comando acima o servidor estará em execução no endereço `http://localhost:8080`, com a possibilidade de ser testado diretamente em:
+
+```shell
+http://localhost:8080/swagger/index.html
+```
+
+
 
 ## Usuário Administrador pré-configurado
 
