@@ -72,6 +72,41 @@ namespace Backend.Api.Migrations
                     b.ToTable("Phones");
                 });
 
+            modelBuilder.Entity("Backend.Api.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@exemplo.com",
+                            IsAdmin = true,
+                            Name = "Admin",
+                            Password = "admin123"
+                        });
+                });
+
             modelBuilder.Entity("Backend.Api.Models.Phone", b =>
                 {
                     b.HasOne("Backend.Api.Models.Person", null)

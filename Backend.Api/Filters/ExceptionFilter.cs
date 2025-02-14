@@ -19,7 +19,11 @@ namespace Backend.Api.Filters
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
                 context.Result = new NotFoundObjectResult(new JsonErrorDto(context.Exception.Message, (int)HttpStatusCode.NotFound));
             }
-
+            else if (context.Exception is BadRequestException)
+            {
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                context.Result = new NotFoundObjectResult(new JsonErrorDto(context.Exception.Message, (int)HttpStatusCode.BadRequest));
+            }
             // else if (context.Exception is ErrorOnValidationException)
             // {
             //     context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;

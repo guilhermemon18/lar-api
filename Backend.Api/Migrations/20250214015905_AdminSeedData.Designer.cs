@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250212220914_alteradoTipoDateTimetoDateonly")]
-    partial class alteradoTipoDateTimetoDateonly
+    [Migration("20250214015905_AdminSeedData")]
+    partial class AdminSeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,13 +33,13 @@ namespace Backend.Api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("BirthDate")
+                    b.Property<DateOnly?>("BirthDate")
                         .HasColumnType("date");
 
                     b.Property<string>("Cpf")
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
@@ -73,6 +73,41 @@ namespace Backend.Api.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Phones");
+                });
+
+            modelBuilder.Entity("Backend.Api.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@exemplo.com",
+                            IsAdmin = true,
+                            Name = "Admin",
+                            Password = "admin123"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Api.Models.Phone", b =>

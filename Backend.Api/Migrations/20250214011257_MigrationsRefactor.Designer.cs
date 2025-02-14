@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250212223239_alteradoTiposNulables")]
-    partial class alteradoTiposNulables
+    [Migration("20250214011257_MigrationsRefactor")]
+    partial class MigrationsRefactor
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,6 +73,31 @@ namespace Backend.Api.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Phones");
+                });
+
+            modelBuilder.Entity("Backend.Api.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Backend.Api.Models.Phone", b =>
