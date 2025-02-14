@@ -23,7 +23,7 @@ namespace Backend.Api.Context
                 Name = "Admin",
                 Email = "admin@exemplo.com",
                 IsAdmin = true,
-                Password = "admin123"
+                Password = "admin123"// criptografar com PasswordHasher em produção, não utilizar texto direto!
             };
 
             modelBuilder.Entity<User>().HasData(adminUser);

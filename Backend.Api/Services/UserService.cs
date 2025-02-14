@@ -34,7 +34,7 @@ namespace Backend.Api.Services
             newUser.Name = user.Name;
             newUser.Email = user.Email;
             newUser.IsAdmin = user.IsAdmin;
-            newUser.Password = user.Password;
+            newUser.Password = user.Password; // criptografar com PasswordHasher em produção, não utilizar texto direto!
             _repository.Add(newUser);
             return newUser;
         }
