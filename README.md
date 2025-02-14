@@ -26,7 +26,7 @@ http://localhost:8080/swagger/index.html
 Faça um clone deste repositório e instale no seu ambiente de desenvolvimento utilizando o seguinte comando no seu terminal (escolha um diretório apropriado):
 
 ```shell
-git@github.com:guilhermemon18/lar-api.git
+git clone git@github.com:guilhermemon18/lar-api.git
 ```
 
 Após clonar o conteúdo do repositório, acesse o diretório "Backend.Api e execute os comandos abaixo:
