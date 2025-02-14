@@ -7,6 +7,7 @@ Uma API que permite criar, listar, buscar, editar e excluir: usuários; pessoas 
 - **.Net:** Plataforma de desenvolvimento.
 - **PostGreSQL:** Banco de dados SQL.
 - **Entity Framework:** Mapeamento objeto-relacional.
+- **.Docker:** Conteiners.
 - **Swagger-OpenAPI:** Biblioteca utilizada para documentar a API, documentação disponível na rota /swagger/index.html.
 
 ## Como usar a API
@@ -47,7 +48,7 @@ Para utilizar as rotas que exigem autorização,  é necessário fazer o sigin  
   "password": "admin123"
 }
 ```
-Em seguida, utilizar o bearer token recebido no corpo para fazer a autorização no swagger ou inserir no Headers a chave Authorization com o Bearer Token da seguinte forma:
+Em seguida, utilizar o bearer token recebido como resposta para fazer a autorização no swagger ou inserir no Headers a chave Authorization com o Bearer Token da seguinte forma:
 ```shell
 {
   Key: "Authorization",
