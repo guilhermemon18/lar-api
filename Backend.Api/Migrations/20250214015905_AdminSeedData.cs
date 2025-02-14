@@ -5,24 +5,24 @@
 namespace Backend.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPasswordColumnToUserTable : Migration
+    public partial class AdminSeedData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Password",
+            migrationBuilder.InsertData(
                 table: "Users",
-                type: "text",
-                nullable: true);
+                columns: new[] { "Id", "Email", "IsAdmin", "Name", "Password" },
+                values: new object[] { 1, "admin@exemplo.com", true, "Admin", "admin123" });
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Password",
-                table: "Users");
+            migrationBuilder.DeleteData(
+                table: "Users",
+                keyColumn: "Id",
+                keyValue: 1);
         }
     }
 }

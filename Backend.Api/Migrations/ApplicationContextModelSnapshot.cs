@@ -95,6 +95,16 @@ namespace Backend.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@exemplo.com",
+                            IsAdmin = true,
+                            Name = "Admin",
+                            Password = "admin123"
+                        });
                 });
 
             modelBuilder.Entity("Backend.Api.Models.Phone", b =>

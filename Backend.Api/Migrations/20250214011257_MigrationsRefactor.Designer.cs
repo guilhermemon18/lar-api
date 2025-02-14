@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Api.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250213140938_AddPasswordColumnToUserTable")]
-    partial class AddPasswordColumnToUserTable
+    [Migration("20250214011257_MigrationsRefactor")]
+    partial class MigrationsRefactor
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,7 +86,7 @@ namespace Backend.Api.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("IsAdmin")
+                    b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
